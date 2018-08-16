@@ -28,8 +28,9 @@ RUN set -xe \
 	&& pecl install imagick && docker-php-ext-enable imagick \
     && pecl install libsodium \
     && docker-php-ext-enable --ini-name 05-opcache.ini opcache \
-    && pecl install redis && docker-php-ext-enable redis \
+    && pecl install redis && docker-php-ext-enable redis \memprof
     && pecl install uuid && docker-php-ext-enable uuid \
+    && pecl install memprof && docker-php-ext-enable memprof \
 #    && pecl install xdebug && docker-php-ext-enable xdebug \
 	&& runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
