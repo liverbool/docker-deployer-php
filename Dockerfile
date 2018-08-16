@@ -4,13 +4,6 @@ FROM php:7.2-fpm-alpine3.7
 RUN apk add --no-cache \
 		git
 
-ARG TIMEZONE
-
-# Set timezone
-RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone
-RUN printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini
-RUN "date"
-
 RUN set -xe \
 	&& apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
